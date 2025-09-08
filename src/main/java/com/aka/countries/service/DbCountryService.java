@@ -3,10 +3,12 @@ package com.aka.countries.service;
 import com.aka.countries.data.entity.CountryEntity;
 import com.aka.countries.data.repository.CountryRepository;
 import com.aka.countries.domain.Country;
+import com.aka.countries.exception.NotFoundCountryByIdException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class DbCountryService implements CountryService {
@@ -59,5 +61,16 @@ public class DbCountryService implements CountryService {
                 foundedCountry.getName(),
                 foundedCountry.getIsoCode(),
                 foundedCountry.getCoordinates());
+    }
+
+    @Override
+    public Country byId(String id) {
+        return countryRepository.findById(UUID.fromString(id))
+                .map(countryEntity -> {
+                    return new Country(
+                            countryEntity.getIsoCode(),
+                            countryEntity.getName(),
+                            countryEntity.getCoordinates());
+                }).orElseThrow(() -> new NotFoundCountryByIdException(id));
     }
 }

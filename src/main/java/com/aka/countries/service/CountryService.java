@@ -12,4 +12,5 @@ public interface CountryService {
 
     Country updateByCode(String countryCode, String newName);
 
+    Country byId(String id);
 }
