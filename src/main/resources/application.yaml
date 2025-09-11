@@ -1,9 +1,13 @@
 spring:
+  grpc:
+    server:
+      servlet:
+        enabled: false
   application:
     name: 'countries'
     version: "1.0"
   datasource:
-    url: jdbc:postgresql://localhost:5432/qa_guru
+    url: jdbc:postgresql://localhost:5434/qa_guru
     username: postgres
     password: example
     hikari:
@@ -28,9 +32,9 @@ spring:
     generate-ddl: true
     open-in-view: false
   flyway:
-    enabled: true                    # ???????? Flyway (?? ????????? ? true)
-    baseline-on-migrate: true  # ??????? ??? ??????????? ? ???????????? ??
-    clean-disabled: true             # ????????? `clean` ? ??????????!
+    enabled: true
+    baseline-on-migrate: true
+    clean-disabled: true
     baseline-version: 0
     schemas: qa_guru
     locations: classpath:db/migration/countries

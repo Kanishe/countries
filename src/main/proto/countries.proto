@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package com.aka.countries;
+
+option java_multiple_files = true;
+option java_package = "com.aka.countries";
+option java_outer_classname = "CountriesProto";
+
+service CountriesService{
+  rpc addCountries(stream CountriesRequest) returns(stream QuantityCountriesResponse){}
+}
+
+message CountriesRequest{
+  string id = 1;
+  string name = 2;
+  string iso_code = 3;
+}
+
+message QuantityCountriesResponse{
+  uint32 count = 1;
+}

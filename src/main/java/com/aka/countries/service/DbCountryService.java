@@ -26,6 +26,7 @@ public class DbCountryService implements CountryService {
                 .stream()
                 .map(countryEntity -> {
                     return new Country(
+                            countryEntity.getId(),
                             countryEntity.getIsoCode(),
                             countryEntity.getName(),
                             countryEntity.getCoordinates());
@@ -44,6 +45,7 @@ public class DbCountryService implements CountryService {
                 )
         );
         return new Country(
+                savedCountry.getId(),
                 savedCountry.getName(),
                 savedCountry.getIsoCode(),
                 savedCountry.getCoordinates());
@@ -58,6 +60,7 @@ public class DbCountryService implements CountryService {
         foundedCountry.setName(newName);
         countryRepository.save(foundedCountry);
         return new Country(
+                foundedCountry.getId(),
                 foundedCountry.getName(),
                 foundedCountry.getIsoCode(),
                 foundedCountry.getCoordinates());
@@ -68,6 +71,7 @@ public class DbCountryService implements CountryService {
         return countryRepository.findById(UUID.fromString(id))
                 .map(countryEntity -> {
                     return new Country(
+                            countryEntity.getId(),
                             countryEntity.getIsoCode(),
                             countryEntity.getName(),
                             countryEntity.getCoordinates());

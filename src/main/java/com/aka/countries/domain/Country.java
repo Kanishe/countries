@@ -1,6 +1,10 @@
 package com.aka.countries.domain;
 
-public record Country(String countryCode,
-                      String countryName,
-                      String coordinates) {
+import java.util.UUID;
+
+public record Country(
+        UUID countryId,
+        String countryCode,
+        String countryName,
+        String coordinates) {
 }
